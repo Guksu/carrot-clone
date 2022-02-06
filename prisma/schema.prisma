@@ -1,6 +1,10 @@
 // npx prisma db push로 db에 push가능하며
 //npx prisma studio로 쉽게 관리할 수 있다.
 
+// 아래의 두 코드는 plantscale을 사용시 외래키가 제대로 동작할 수 있게하는 코드이다.
+// previewFeatures = ["referentialIntegrity"]
+//   referentialIntegrity = "prisma"
+
 generator client {
   provider        = "prisma-client-js"
   previewFeatures = ["referentialIntegrity"]
