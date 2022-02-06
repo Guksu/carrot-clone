@@ -1,0 +1,24 @@
+// npx prisma db push로 db에 push가능하며
+//npx prisma studio로 쉽게 관리할 수 있다.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// @id는 모델에 단일 필드 id를 지정해준다.
+// @updataeAt은 마지막으로 업데이트된 시간을 자동으로 저장한다.
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  phone     Int?     @unique
+  email     String?  @unique
+  avatar    String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+}
