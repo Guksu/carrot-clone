@@ -2,12 +2,18 @@ import type { NextPage } from "next";
 import Layout from "../components/layout";
 import FloatingButton from "../components/floating-button";
 import Item from "../components/item";
+import useUser from "../libs/client/useUser";
+import Head from "next/head";
 
 // map 함수의 경우 첫번째 arg는 배열 내 현재값 / 두번째 arg 는 배열 내 현재 값의 인덱스 / 세번쨰 arg는 현재 배열을 뜻한다.
 
 const Home: NextPage = () => {
+  const user = useUser();
   return (
     <Layout title="홈" hasTabBar>
+      <Head>
+        <title>Home</title>
+      </Head>
       <div className="flex flex-col space-y-5 divide-y">
         {[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1].map((_, i) => (
           <Item
