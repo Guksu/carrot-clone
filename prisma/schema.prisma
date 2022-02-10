@@ -21,10 +21,23 @@ datasource db {
 model User {
   id        Int      @id @default(autoincrement())
   name      String
-  phone     Int?     @unique
+  phone     String?  @unique
   email     String?  @unique
   avatar    String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  tokens    Token[]
 
+}
+
+// prisma의 경우 아래의 user는 DB의 테이블로 저장되지 않지만 token.user.name의 기능을 사용 가능하다
+// onDelete: Cascade를 통해 유저가 삭제되면 토큰도 자동으로 삭제된다.
+
+model Token {
+  id        Int      @id @default(autoincrement())
+  payload   String   @unique
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
