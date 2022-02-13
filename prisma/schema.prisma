@@ -79,6 +79,8 @@ model Post {
   question  String     @db.MediumText
   Answer    Answer[]
   wondering Wonderig[]
+  latitude  Float?
+  longitude Float?
 }
 
 model Answer {
