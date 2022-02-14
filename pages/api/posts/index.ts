@@ -40,7 +40,10 @@ async function handler(
     } = req;
     const parsedLatitude = parseFloat(latitude.toString());
     const parsedLongitue = parseFloat(longitude.toString());
+    // take는 10개의 항목만 가져오고 skip은 처음 10개항목은 스킵한다.
     const posts = await client.post.findMany({
+      take: 10,
+      skip: 10,
       include: {
         user: {
           select: {
